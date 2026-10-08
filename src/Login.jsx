@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import api from './api';
+import './Login.css';
 
 export default function Login({ onLogin }) {
   const [register, setRegister] = useState(false);
@@ -49,20 +50,90 @@ export default function Login({ onLogin }) {
   }
 
   return (
-    <main className="auth">
-      <div className="card shadow border-0">
-        <div className="card-body p-4">
+    <main className="auth-page">
 
-          <h2 className="text-primary fw-bold">
-            PlaceTrack
-          </h2>
+      {/* LEFT SIDE */}
+      <section className="auth-brand">
 
-          <p className="text-muted">
-            College Placement Management System
+        <div className="brand-content">
+
+          <div className="brand-logo">
+            <div className="logo-icon">P</div>
+            <span>PlaceTrack</span>
+          </div>
+
+          <h1>
+            Your career journey
+            <span> starts here.</span>
+          </h1>
+
+          <p className="brand-description">
+            A smarter way to manage college placements,
+            track applications and stay ahead of your career.
           </p>
 
+          <div className="features">
+
+            <div className="feature">
+              <div className="feature-icon">✓</div>
+              <div>
+                <strong>Track Applications</strong>
+                <p>Keep your placement journey organized.</p>
+              </div>
+            </div>
+
+            <div className="feature">
+              <div className="feature-icon">⌁</div>
+              <div>
+                <strong>Discover Opportunities</strong>
+                <p>Stay updated with the latest drives.</p>
+              </div>
+            </div>
+
+            <div className="feature">
+              <div className="feature-icon">↗</div>
+              <div>
+                <strong>Build Your Career</strong>
+                <p>Move closer to your dream company.</p>
+              </div>
+            </div>
+
+          </div>
+
+          <div className="brand-footer">
+            <span>●</span> Built for students & placement teams
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* RIGHT SIDE */}
+      <section className="auth-form-section">
+
+        <div className="login-card">
+
+          <div className="mobile-logo">
+            <div className="logo-icon">P</div>
+            <span>PlaceTrack</span>
+          </div>
+
+          <div className="form-heading">
+            <h2>
+              {register ? 'Create your account' : 'Welcome back'}
+            </h2>
+
+            <p>
+              {register
+                ? 'Start your placement journey with PlaceTrack.'
+                : 'Sign in to continue to your dashboard.'}
+            </p>
+          </div>
+
           {error && (
-            <div className="alert alert-danger py-2">
+            <div className="error-box">
+              <span>!</span>
               {error}
             </div>
           )}
@@ -70,117 +141,200 @@ export default function Login({ onLogin }) {
           <form onSubmit={submit}>
 
             {register && (
-              <>
-                <input
-                  className="form-control mb-2"
-                  name="fullName"
-                  placeholder="Full name"
-                  onChange={change}
-                  required
-                />
+              <div className="register-fields">
 
-                <input
-                  className="form-control mb-2"
-                  name="rollNumber"
-                  placeholder="Roll number"
-                  onChange={change}
-                  required
-                />
-
-                <div className="row">
-                  <div className="col">
+                <div className="input-group-custom">
+                  <label>Full Name</label>
+                  <div className="input-wrapper">
+                    <span className="input-icon">👤</span>
                     <input
-                      className="form-control mb-2"
-                      name="branch"
-                      value={form.branch}
+                      name="fullName"
+                      placeholder="Enter your full name"
                       onChange={change}
-                    />
-                  </div>
-
-                  <div className="col">
-                    <input
-                      className="form-control mb-2"
-                      type="number"
-                      min="1"
-                      max="6"
-                      name="year"
-                      value={form.year}
-                      onChange={change}
+                      required
                     />
                   </div>
                 </div>
 
-                <input
-                  className="form-control mb-2"
-                  type="number"
-                  step="0.01"
-                  min="0"
-                  max="10"
-                  name="cgpa"
-                  value={form.cgpa}
-                  onChange={change}
-                  required
-                />
+                <div className="input-group-custom">
+                  <label>Roll Number</label>
+                  <div className="input-wrapper">
+                    <span className="input-icon">#</span>
+                    <input
+                      name="rollNumber"
+                      placeholder="Enter your roll number"
+                      onChange={change}
+                      required
+                    />
+                  </div>
+                </div>
 
-                <input
-                  className="form-control mb-2"
-                  name="phone"
-                  placeholder="Phone number"
-                  onChange={change}
-                  required
-                />
-              </>
+                <div className="two-columns">
+
+                  <div className="input-group-custom">
+                    <label>Branch</label>
+                    <div className="input-wrapper">
+                      <span className="input-icon">⌘</span>
+                      <input
+                        name="branch"
+                        value={form.branch}
+                        onChange={change}
+                        placeholder="CSE"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="input-group-custom">
+                    <label>Year</label>
+                    <div className="input-wrapper">
+                      <span className="input-icon">▣</span>
+                      <input
+                        type="number"
+                        min="1"
+                        max="6"
+                        name="year"
+                        value={form.year}
+                        onChange={change}
+                      />
+                    </div>
+                  </div>
+
+                </div>
+
+                <div className="two-columns">
+
+                  <div className="input-group-custom">
+                    <label>CGPA</label>
+                    <div className="input-wrapper">
+                      <span className="input-icon">★</span>
+                      <input
+                        type="number"
+                        step="0.01"
+                        min="0"
+                        max="10"
+                        name="cgpa"
+                        value={form.cgpa}
+                        onChange={change}
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="input-group-custom">
+                    <label>Phone</label>
+                    <div className="input-wrapper">
+                      <span className="input-icon">☎</span>
+                      <input
+                        name="phone"
+                        placeholder="Phone number"
+                        onChange={change}
+                        required
+                      />
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
             )}
 
-            <input
-              className="form-control mb-2"
-              type="email"
-              name="email"
-              placeholder="Email"
-              onChange={change}
-              required
-            />
+            <div className="input-group-custom">
+              <label>Email Address</label>
 
-            <input
-              className="form-control mb-3"
-              type="password"
-              minLength="6"
-              name="password"
-              placeholder="Password"
-              onChange={change}
-              required
-            />
+              <div className="input-wrapper">
+                <span className="input-icon">@</span>
+
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="you@example.com"
+                  onChange={change}
+                  required
+                />
+              </div>
+            </div>
+
+
+            <div className="input-group-custom">
+              <div className="password-label">
+                <label>Password</label>
+
+                {!register && (
+                  <button
+                    type="button"
+                    className="forgot-password"
+                  >
+                    Forgot password?
+                  </button>
+                )}
+              </div>
+
+              <div className="input-wrapper">
+                <span className="input-icon">🔒</span>
+
+                <input
+                  type="password"
+                  minLength="6"
+                  name="password"
+                  placeholder="Enter your password"
+                  onChange={change}
+                  required
+                />
+              </div>
+            </div>
+
 
             <button
-              className="btn btn-primary w-100"
+              className="submit-button"
               type="submit"
             >
-              {register
-                ? 'Create student account'
-                : 'Sign in'}
+              <span>
+                {register
+                  ? 'Create Student Account'
+                  : 'Sign In'}
+              </span>
+
+              <span className="arrow">→</span>
             </button>
 
           </form>
 
-          <button
-            className="btn btn-link w-100 mt-2"
-            onClick={() => {
-              setRegister(!register);
-              setError('');
-            }}
-          >
-            {register
-              ? 'Already registered? Sign in'
-              : 'New student? Register'}
-          </button>
 
-          <small className="d-block text-center text-muted">
-            Admin: admin@placement.edu / Admin@123
-          </small>
+          <div className="switch-auth">
+
+            <span>
+              {register
+                ? 'Already have an account?'
+                : "Don't have an account?"}
+            </span>
+
+            <button
+              onClick={() => {
+                setRegister(!register);
+                setError('');
+              }}
+            >
+              {register ? 'Sign in' : 'Create account'}
+            </button>
+
+          </div>
+
+
+          <div className="security-note">
+            <span>🔐</span>
+            Your information is securely protected
+          </div>
+
+
+          <div className="admin-note">
+            <strong>Admin access</strong>
+            <span>admin@placement.edu</span>
+          </div>
 
         </div>
-      </div>
+
+      </section>
+
     </main>
   );
 }
-
